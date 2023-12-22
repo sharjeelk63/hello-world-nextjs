@@ -5,7 +5,7 @@ pipeline {
         AWS_ACCOUNT_ID="875040446953"
         AWS_DEFAULT_REGION="us-east-1"
         IMAGE_REPO_NAME="hello-world-nextjs"
-        IMAGE_TAG="v1"
+        IMAGE_TAG="v${BUILD_ID}"
         REPOSITORY_URL ="${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
         AWS_CREDENTIAL = credentials('aws-credentials') // Configure the AWS Credentials         
     }   
@@ -47,15 +47,6 @@ pipeline {
              }
             }
           }
-
-        stage('Delpoying on EKS Cluster') {
-          steps{
-           // Deploy the image on EKS Cluster
-          script{
-             sh "kubectl create -f nodejs-deploy.yaml"
-            }
-          }  
-        }
     }  
     post {
       success {

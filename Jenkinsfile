@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-      // Define your AWS and ECR credentials
+      // Define your environment variables
         AWS_ACCOUNT_ID="875040446953"
         AWS_DEFAULT_REGION="us-east-1"
         IMAGE_REPO_NAME="hello-world-nextjs"

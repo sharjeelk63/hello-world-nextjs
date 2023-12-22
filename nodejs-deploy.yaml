@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs-app  # The name of the Kubernetes Deployment
+  labels:
+    app: nodejs  # Labels to identify and group resources
+spec:
+  replicas: 1  # Number of desired replicas (Pods) for the application
+  selector:
+    matchLabels:
+      app: nodejs  # Selects Pods with the label 'app: nodejs'
+  template:
+    metadata:
+      labels:
+        app: nodejs  # Labels for Pods created by this Deployment
+    spec:
+      containers:
+      - name: nodejs-app  # The name of the container within the Pod
+        image: 8875040446953.dkr.ecr.us-east-1.amazonaws.com/hello-world-nextjs:v2 # Docker image for the container
+        ports:
+        - containerPort: 3000  # The port on which the container will listen for incoming traffic
+

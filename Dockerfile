@@ -1,5 +1,5 @@
 # Use an official Node.js runtime as a base image
-FROM node:16-alpine
+FROM node:18-alpine
 
 # Set the working directory in the container
 WORKDIR /usr/src/hello-world-nextjs
@@ -18,3 +18,7 @@ EXPOSE 3000
 
 # Define the command to run your application
 CMD ["npm", "run", "dev"]
+
+
+
+

@@ -16,7 +16,22 @@ spec:
     spec:
       containers:
       - name: nodejs-app  # The name of the container within the Pod
-        image: 8875040446953.dkr.ecr.us-east-1.amazonaws.com/hello-world-nextjs:v2 # Docker image for the container
+        image: 8875040446953.dkr.ecr.us-east-1.amazonaws.com/hello-world-nextjs:v1 # Docker image for the container
         ports:
         - containerPort: 3000  # The port on which the container will listen for incoming traffic
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodejs-app-service  # The name of the Kubernetes Service
+spec:
+  selector:
+    app: nodejs  # Selects Pods with the label 'app: nodejs'
+  ports:
+    - protocol: TCP
+      port: 80  # The port on which the Service will be accessible within the cluster
+      targetPort: 3000  # The port to which traffic will be forwarded to the selected Pods
+  type: LoadBalancer  # Specifies that the Service should be of type LoadBalancer
 
